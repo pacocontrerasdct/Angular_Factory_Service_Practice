@@ -14,27 +14,44 @@
     <section ng-controller="CommentsController as comments">
       <h1>People Commented that...</h1>
       
-
-      <form ng-submit="comments.newComment()">
-        
-        <label for="new-comment-name">Name</label>
-        <input ng-model="comments.comment.name"></input>
-        
-        <label for="new-comment-email">Email</label>
-        <input ng-model="comments.comment.email"></input>
-
-        <label for="new-comment-body">Comment</label>
-        <input ng-model="comments.comment.body"></input>
-        
-        <input type="submit" value="Add Comment">
-      </form>
-
+      <div ng-show="comments.show">
+        <form ng-submit="comments.editComment(comment)">   
+          <label for="new-comment-name">Name</label>
+          <input ng-model="comments.show.name">
+          
+          <label for="new-comment-email">Email</label>
+          <input ng-model="comments.show.email">
+          <br>
+          <label for="new-comment-body">Comment</label>
+          <br>
+          <textarea class="textarea" ng-model="comments.show.body"></textarea>
+          <br>
+          <input class="button-input" type="submit" value="Update Comment">
+        </form>
+      </div>
+      <div ng-hide="comments.show">
+        <form ng-submit="comments.newComment()">   
+          <label for="new-comment-name">Name</label>
+          <input ng-model="comments.comment.name">
+          <input ng-if="comments.show" ng-model="comments.show.name ">
+          
+          <label for="new-comment-email">Email</label>
+          <input ng-model="comments.comment.email" ng-bind="{{ comments.show.email }}">
+          <br>
+          <label for="new-comment-body">Comment</label>
+          <br>
+          <textarea class="textarea" ng-model="comments.comment.body" ng-bind="{{ comments.show.body }}"></textarea>
+          <br>
+          <input class="button-input" type="submit" value="Add Comment">
+        </form>
+      </div>
 
       <ul id="ulComments">
         <li ng-repeat="comment in comments.allComments">
-          <strong>Title: {{comment.name}}</strong>
-          <br><em>Author: {{comment.email}}</em>
-          <pre>Comment:  {{comment.body}}</pre>
+            <strong>Title: {{comment.name}}</strong>
+            <br><em>Author: {{comment.email}}</em>
+            <pre>Comment:  {{comment.body}}</pre>
+            <button class="button-edit" ng-click="comments.showComment(comment)" title="Click to edit">Edit</button>
         </li>
       </ul>
     </section>

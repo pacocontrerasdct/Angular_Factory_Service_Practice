@@ -27,6 +27,38 @@ angular.module('AngularFactoryApp')
           deferred.reject(error);
         })
         return deferred.promise;
+      },
+
+      showComment: function(comment) {
+        console.log("this is show in Factory, response", comment);
+        var deferred = $q.defer();
+        $http
+        .get('http://jsonplaceholder.typicode.com/comments/' + comment.id)
+        .success(function(response) {
+          deferred.resolve(response);
+          console.log("this is Factory response", response);
+        })
+        .error(function(error) {
+          deferred.reject(error);
+        })
+        return deferred.promise;
+
+      },
+
+      editComment: function(comment) {
+        console.log("this is edit in Factory, response", comment);
+        var deferred = $q.defer();
+        $http
+        .get('http://jsonplaceholder.typicode.com/comments/' + comment.id)
+        .success(function(response) {
+          deferred.resolve(response);
+          console.log("this is Factory response", response);
+        })
+        .error(function(error) {
+          deferred.reject(error);
+        })
+        return deferred.promise;
+
       }
 
 

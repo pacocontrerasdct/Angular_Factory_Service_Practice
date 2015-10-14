@@ -17,6 +17,16 @@ angular.module('AngularFactoryApp')
       });
     }
 
+    self.showComment = function(comment) {
+      console.log("Show in controller", comment);
+      CommentsFactoryFunction.showComment(comment)
+      .then(function(response) {
+        console.log("Response show in controller", response);
+        self.show = response;
+        self.comment = {};
+      });
+    }
+
     
 
 
