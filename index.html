@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="AngularFactoryApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Practice with Factory Service in Angular</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/commentsController.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <section ng-controller="CommentsController as comments">
+      <h1>People Commented that...</h1>
+
+      <ul id="comments">
+        <li ng-repeat="comment in comments.all">
+          <strong>Title: {{comment.name}}</strong>
+          <br><em>Author: {{comment.email}}</em>
+          <pre>Comment:  {{comment.body}}</pre>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
