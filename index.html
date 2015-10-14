@@ -7,14 +7,31 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
     <script src="js/commentsController.js" charset="utf-8"></script>
+    <script src="js/commentsFactory.js" charset="utf-8"></script>
   </head>
   <body>
 
     <section ng-controller="CommentsController as comments">
       <h1>People Commented that...</h1>
+      
 
-      <ul id="comments">
-        <li ng-repeat="comment in comments.all">
+      <form ng-submit="comments.newComment()">
+        
+        <label for="new-comment-name">Name</label>
+        <input ng-model="comments.comment.name"></input>
+        
+        <label for="new-comment-email">Email</label>
+        <input ng-model="comments.comment.email"></input>
+
+        <label for="new-comment-body">Comment</label>
+        <input ng-model="comments.comment.body"></input>
+        
+        <input type="submit" value="Add Comment">
+      </form>
+
+
+      <ul id="ulComments">
+        <li ng-repeat="comment in comments.allComments">
           <strong>Title: {{comment.name}}</strong>
           <br><em>Author: {{comment.email}}</em>
           <pre>Comment:  {{comment.body}}</pre>

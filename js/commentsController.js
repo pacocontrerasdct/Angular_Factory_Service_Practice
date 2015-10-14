@@ -1,24 +1,24 @@
-angular.module('AngularFactoryApp', [])
-  .controller('CommentsController', CommentsController);
+angular.module('AngularFactoryApp')
+  .controller('CommentsController', function(CommentsFactoryFunction) {
+    var self = this;
+    var allComments = [];  
 
-CommentsController.$inject = ['$http']; 
+    CommentsFactoryFunction.getAllComments()
+    .then(function(response) {
+      self.allComments = response;
+    });
 
-function CommentsController($http){
-  
-  var self = this;  
-  self.all = [];
-
-  function getComments() {
-    $http
-      .get('http://jsonplaceholder.typicode.com/comments')
+    self.newComment = function() {
+      CommentsFactoryFunction.newComment(self.comment)
       .then(function(response) {
-          console.log(response)
-          self.all = response.data;
+        console.log("Response in controller", response);
+        self.allComments.push(response);
+        self.comment = {};
       });
-  }
-  getComments();
-}
+    }
+
+    
 
 
-
+  });
 

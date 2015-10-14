@@ -1,0 +1,37 @@
+angular.module('AngularFactoryApp')
+  .factory('CommentsFactoryFunction', function($http, $q){
+    var CommentsFactoryFunction = {
+      
+      getAllComments: function() {
+        var deferred = $q.defer();
+        $http
+        .get('http://jsonplaceholder.typicode.com/comments')
+        .success(function(response) {
+          deferred.resolve(response);
+        })
+        .error(function(error) {
+          deferred.reject(error);
+        })
+        return deferred.promise;
+      },
+
+      newComment: function(comment) {
+        var deferred = $q.defer();
+        $http
+        .post('http://jsonplaceholder.typicode.com/comments', comment)
+        .success(function(response) {
+          deferred.resolve(response);
+          console.log("this is Factory response", response);
+        })
+        .error(function(error) {
+          deferred.reject(error);
+        })
+        return deferred.promise;
+      }
+
+
+
+    }
+
+    return CommentsFactoryFunction;
+  });
