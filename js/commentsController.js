@@ -27,6 +27,16 @@ angular.module('AngularFactoryApp')
       });
     }
 
+    self.editComment = function() {
+      console.log("Edit in controller", self.show);
+      comment = self.show;
+      CommentsFactoryFunction.editComment(comment)
+      .then(function(response) {
+        console.log("Response edit in controller", response);
+        self.show = {};
+        CommentsFactoryFunction.getAllComments();
+      });
+    }
     
 
 

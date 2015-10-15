@@ -49,7 +49,7 @@ angular.module('AngularFactoryApp')
         console.log("this is edit in Factory, response", comment);
         var deferred = $q.defer();
         $http
-        .get('http://jsonplaceholder.typicode.com/comments/' + comment.id)
+        .patch('http://jsonplaceholder.typicode.com/comments/' + comment.id, comment)
         .success(function(response) {
           deferred.resolve(response);
           console.log("this is Factory response", response);
